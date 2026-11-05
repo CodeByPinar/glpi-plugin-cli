@@ -1,0 +1,47 @@
+name: Bug report
+description: The CLI failed, or the generated plugin misbehaves on GLPI
+labels: [bug]
+body:
+  - type: input
+    id: command
+    attributes:
+      label: Command
+      description: The exact command, flags included
+      placeholder: npx create-glpi-plugin notes --features menu,itemtype --glpi both --yes
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CLI version
+      placeholder: output of `npx create-glpi-plugin --version`
+    validations:
+      required: true
+  - type: dropdown
+    id: glpi
+    attributes:
+      label: GLPI version the plugin was installed on
+      options:
+        - not installed yet (CLI problem)
+        - GLPI 11.0.x
+        - GLPI 12.0.x
+        - both
+    validations:
+      required: true
+  - type: input
+    id: php
+    attributes:
+      label: PHP version
+      placeholder: "8.3.6"
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, what did you expect?
+      description: For a white page or 500, add the matching line from GLPI's `files/_log/php-errors.log`.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output or log
+      render: shell

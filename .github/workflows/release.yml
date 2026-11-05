@@ -1,5 +1,6 @@
-# Publish to npm when a tag "vX.Y.Z" matching package.json is pushed. Needs the NPM_TOKEN secret
-# (an npm automation token) in the repository settings.
+# Release: push a tag "vX.Y.Z" matching package.json → GitHub release with the CHANGELOG section as notes,
+# and an npm publish when the NPM_TOKEN secret (an npm granular token with publish rights) is configured.
+# Without the secret, or when the version is already on npm, the npm step is skipped and the release still happens.
 name: Release
 
 on:
@@ -11,7 +12,7 @@ permissions:
   id-token: write
 
 jobs:
-  publish:
+  release:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,18 +21,41 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org
           cache: npm
+
       - name: Check the version
+        id: v
         run: |
           VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           if [[ "$GITHUB_REF_NAME" != "v$VERSION" ]]; then
             echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $VERSION"; exit 1
           fi
+
       - run: npm ci
       - run: npm run check
-      - run: npm publish --provenance --access public
+
+      - name: Release notes from CHANGELOG.md
+        run: node scripts/release-notes.js "${{ steps.v.outputs.version }}" > release-notes.md && cat release-notes.md
+
+      - name: Is this version already on npm?
+        id: npm
+        env:
+          HAS_TOKEN: ${{ secrets.NPM_TOKEN != '' }}
+        run: |
+          PUBLISHED=$(npm view "create-glpi-plugin@${{ steps.v.outputs.version }}" version 2>/dev/null || true)
+          echo "published=$PUBLISHED" >> "$GITHUB_OUTPUT"
+          echo "has_token=$HAS_TOKEN" >> "$GITHUB_OUTPUT"
+          if [[ -n "$PUBLISHED" ]]; then echo "::notice::create-glpi-plugin@$PUBLISHED is already on npm, publish skipped"; fi
+          if [[ "$HAS_TOKEN" != "true" ]]; then echo "::warning::NPM_TOKEN secret not set, npm publish skipped (run npm publish --access public by hand)"; fi
+
+      - name: Publish to npm
+        if: steps.npm.outputs.published == '' && steps.npm.outputs.has_token == 'true'
+        run: npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
+          name: create-glpi-plugin ${{ steps.v.outputs.version }}
+          body_path: release-notes.md

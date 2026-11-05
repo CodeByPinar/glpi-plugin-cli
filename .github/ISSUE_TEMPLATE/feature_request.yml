@@ -1,0 +1,28 @@
+name: Feature request or GLPI trap
+description: A new part for the generated plugin, a CLI option, or a GLPI 11 / 12 rule missing from the rulebook
+labels: [enhancement]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: Kind
+      options:
+        - New part for the generated plugin (e.g. dashboard card, notification, form destination)
+        - CLI option or prompt
+        - Missing rule / trap for docs/glpi-rules.md
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What should it do?
+      description: For a GLPI trap, say what you did, what GLPI did instead, and on which version.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why does it matter?
+      description: The plugin or situation where you needed it.
