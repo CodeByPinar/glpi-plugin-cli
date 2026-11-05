@@ -386,8 +386,6 @@ tests/                      node:test suites
 ## 🙏 Credits
 
 - [GLPI](https://glpi-project.org) by Teclib' and contributors.
-- [ViraStack Start](https://github.com/virastack/start) by Ömer Gülçiçek, for the idea that a scaffolder should
-  ship the stack's rules for coding agents too.
 - [@clack/prompts](https://github.com/bombshell-dev/clack) for the prompts.
 
 ## 📄 License

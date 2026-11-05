@@ -326,8 +326,6 @@ kaldırma temizliği) ve tarayıcıda görüntülendi.
 ## 🙏 Teşekkür
 
 - Teclib' ve katkıcılarının [GLPI](https://glpi-project.org)'si.
-- Ömer Gülçiçek'in [ViraStack Start](https://github.com/virastack/start)'ı: bir iskelet üretecinin yığının
-  kurallarını kodlama ajanları için de taşıması fikri.
 - Sorular için [@clack/prompts](https://github.com/bombshell-dev/clack).
 
 ## 📄 Lisans
