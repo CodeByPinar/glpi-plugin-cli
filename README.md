@@ -62,8 +62,7 @@ Writing a GLPI plugin is mostly ceremony before the first useful line, and most 
 follows are also written down in `docs/glpi-rules.md` inside the plugin, each with the symptom it prevents, so the
 next change you or your AI assistant make follows them too.
 
-It is the GLPI counterpart of `create-next-app` or [ViraStack Start](https://github.com/virastack/start): a
-scaffolder with the stack's conventions and an agent "constitution" built in. Everything it writes is plain PHP you
+It is the GLPI counterpart of `create-next-app`: a scaffolder with the stack's conventions and an agent "constitution" built in. Everything it writes is plain PHP you
 own. No runtime dependency on this tool, no framework, no telemetry.
 
 ## 🚀 Quick start

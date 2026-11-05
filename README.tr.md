@@ -50,8 +50,7 @@ GLPI eklentisi yazmak, ilk işe yarar satırdan önce bir yığın tören demek 
 Uyduğu kurallar eklentinin içindeki `docs/glpi-rules.md` dosyasında, her biri önlediği belirtiyle birlikte
 durur; böylece sizin veya yapay zekâ asistanınızın yapacağı sonraki değişiklik de aynı kurallara uyar.
 
-`create-next-app` ya da [ViraStack Start](https://github.com/virastack/start)'ın GLPI karşılığı: yığının
-gelenekleri ve ajanlar için bir "anayasa" ile gelen iskelet üreteci. Yazdığı her şey size ait düz PHP. Bu araca
+`create-next-app`'in GLPI karşılığı: yığının gelenekleri ve ajanlar için bir "anayasa" ile gelen iskelet üreteci. Yazdığı her şey size ait düz PHP. Bu araca
 çalışma zamanı bağımlılığı yok, çerçeve yok, telemetri yok.
 
 ## 🚀 Hızlı başlangıç
