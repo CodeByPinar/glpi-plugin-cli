@@ -1,0 +1,69 @@
+# CI: syntax check on every supported PHP, then a real install on the official GLPI Docker image
+# (database install, plugin:install, plugin:activate, class load check, login page answers).
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  lint:
+    name: PHP ${{ matrix.php }} syntax
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: [{{#if glpi11}}'8.2', {{/if}}'8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - run: bash tests/lint.sh
+
+  install:
+    name: Install on GLPI ${{ matrix.glpi }}
+    runs-on: ubuntu-latest
+    needs: lint
+    strategy:
+      fail-fast: false
+      matrix:
+        glpi: [{{#if glpi11}}'11.0'{{/if}}{{#if both}}, {{/if}}{{#if glpi12}}'12.0'{{/if}}]
+    env:
+      COMPOSE: docker compose -f docker/docker-compose.yml
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start GLPI ${{ matrix.glpi }}
+        run: GLPI_TAG=${{ matrix.glpi }} $COMPOSE up -d
+
+      - name: Wait until GLPI has installed its database
+        run: |
+          P=""; [ "${{ matrix.glpi }}" = "11.0" ] && P="glpi:"
+          for i in $(seq 1 60); do
+            if $COMPOSE exec -T -u www-data glpi php /var/www/glpi/bin/console ${P}plugin:list >/dev/null 2>&1; then
+              echo "GLPI is up after $((i * 5)) s"; exit 0
+            fi
+            sleep 5
+          done
+          $COMPOSE logs glpi; exit 1
+
+      - name: Install and activate the plugin
+        run: |
+          P=""; [ "${{ matrix.glpi }}" = "11.0" ] && P="glpi:"
+          C="$COMPOSE exec -T -u www-data glpi php /var/www/glpi/bin/console"
+          $C ${P}plugin:install {{key}} -u glpi
+          $C ${P}plugin:activate {{key}}
+          $C ${P}plugin:list | grep -i '{{key}}'
+
+      - name: Load every class against GLPI's classes
+        run: $COMPOSE exec -T -u www-data glpi php /var/www/glpi/plugins/{{key}}/tests/loadcheck.php /var/www/glpi
+
+      - name: GLPI still answers
+        run: curl -fsS -o /dev/null -w 'login page: HTTP %{http_code}\n' http://localhost:8080/
+
+      - name: Logs on failure
+        if: failure()
+        run: $COMPOSE logs glpi | tail -n 200

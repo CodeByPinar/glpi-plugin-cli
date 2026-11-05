@@ -1,0 +1,4 @@
+# Keep LF everywhere: the templates include shell scripts that must not pick up CRLF on Windows checkouts.
+* text=auto eol=lf
+*.png binary
+*.mo binary

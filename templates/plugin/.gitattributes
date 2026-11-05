@@ -1,0 +1,9 @@
+# LF everywhere (tests/*.sh and tools/*.sh break with CRLF); binaries marked so git never touches them.
+* text=auto eol=lf
+*.mo binary
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

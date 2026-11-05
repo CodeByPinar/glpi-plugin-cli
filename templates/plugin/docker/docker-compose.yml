@@ -1,0 +1,42 @@
+# {{name}} in a throw-away GLPI:   docker compose up -d   →   http://localhost:8080   (glpi / glpi)
+# GLPI installs itself on first start (about a minute). Then enable the plugin once:
+#   docker compose exec -u www-data glpi php /var/www/glpi/bin/console {{consolePrefix}}plugin:install {{key}} -u glpi
+#   docker compose exec -u www-data glpi php /var/www/glpi/bin/console {{consolePrefix}}plugin:activate {{key}}
+{{#if both}}
+# GLPI 12:  GLPI_TAG=12.0 docker compose up -d   and drop the `glpi:` prefix of the console commands.
+{{/if}}
+# The plugin folder is mounted, so edits show at once. Evaluation only: change the passwords before exposing it.
+name: glpi-{{key}}
+
+services:
+  glpi:
+    image: glpi/glpi:${GLPI_TAG:-{{dockerTag}}}
+    restart: unless-stopped
+    environment:
+      GLPI_DB_HOST: db
+      GLPI_DB_PORT: "3306"
+      GLPI_DB_NAME: glpi
+      GLPI_DB_USER: glpi
+      GLPI_DB_PASSWORD: glpi
+    volumes:
+      - glpi_data:/var/glpi
+      - ..:/var/www/glpi/plugins/{{key}}
+    depends_on:
+      - db
+    ports:
+      - "8080:80"
+
+  db:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      MYSQL_DATABASE: glpi
+      MYSQL_USER: glpi
+      MYSQL_PASSWORD: glpi
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  glpi_data:
+  db_data:

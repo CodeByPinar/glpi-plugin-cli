@@ -1,0 +1,9 @@
+/* {{name}} — served by GLPI at /plugins/{{key}}/css/{{key}}.css (GLPI maps that URL to this public/ file). */
+
+.{{key}} h2 .ti {
+    font-size: 0.9em;
+}
+
+.{{key}}-nav .nav-link {
+    padding: 0.35rem 0.8rem;
+}

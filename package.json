@@ -1,0 +1,55 @@
+{
+  "name": "create-glpi-plugin",
+  "version": "0.1.0",
+  "description": "Scaffold a GLPI 11 / 12 plugin in one command: menu, rights, settings page, item type, cron task, ticket tab, release workflow and AI coding rules.",
+  "author": {
+    "name": "Pınar Topuz",
+    "url": "https://github.com/CodeByPinar"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/CodeByPinar/glpi-plugin-cli",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodeByPinar/glpi-plugin-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodeByPinar/glpi-plugin-cli/issues"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "create-glpi-plugin": "./bin/create-glpi-plugin.js"
+  },
+  "files": [
+    "bin",
+    "src",
+    "templates"
+  ],
+  "scripts": {
+    "start": "node ./bin/create-glpi-plugin.js",
+    "test": "node --test",
+    "lint": "node scripts/check-syntax.js",
+    "check": "npm run lint && npm test"
+  },
+  "keywords": [
+    "glpi",
+    "glpi-plugin",
+    "glpi11",
+    "glpi12",
+    "scaffolding",
+    "boilerplate",
+    "cli",
+    "create",
+    "itsm",
+    "php"
+  ],
+  "dependencies": {
+    "@clack/prompts": "^1.8.1",
+    "picocolors": "^1.1.1"
+  }
+}

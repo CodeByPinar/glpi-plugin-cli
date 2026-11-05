@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="560" viewBox="0 0 860 560" role="img" aria-label="Animated terminal session of npx create-glpi-plugin: the key, the display name, the GLPI versions, the parts and the AI tools are asked, then 34 files are written and the first commit is made">
+  <defs>
+    <style>
+      text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; font-size: 15px; white-space: pre; }
+      .dim { fill: #64748b; } .fg { fill: #e2e8f0; } .cy { fill: #22d3ee; } .gr { fill: #4ade80; } .ye { fill: #fbbf24; } .mg { fill: #c084fc; } .bl { fill: #60a5fa; }
+    </style>
+  </defs>
+  <rect width="860" height="560" rx="16" fill="#0b1220"/>
+  <rect x="0" y="0" width="860" height="40" rx="16" fill="#111a2e"/>
+  <rect x="0" y="24" width="860" height="16" fill="#111a2e"/>
+  <circle cx="22" cy="20" r="6" fill="#ff5f57"/><circle cx="42" cy="20" r="6" fill="#febc2e"/><circle cx="62" cy="20" r="6" fill="#28c840"/>
+  <text x="430" y="25" text-anchor="middle" class="dim" style="font-size:13px">~/projects — create-glpi-plugin</text>
+  <g transform="translate(28 72)">
+        <g><text y="40"><tspan class="cy">$</tspan><tspan class="fg" dx="8">npx create-glpi-plugin</tspan></text><rect x="44" y="25" width="860" height="20" fill="#0b1220"><animate attributeName="x" values="44;246.66;246.66" keyTimes="0;0.0765;1" dur="17.0s" repeatCount="indefinite"/></rect></g>
+    <g opacity="0"><rect x="46" y="27" width="9" height="17" fill="#e2e8f0"><animate attributeName="x" values="46;247.66;247.66" keyTimes="0;0.0765;1" dur="17.0s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.5;0.5;1" dur="0.9s" repeatCount="indefinite"/></rect><animate attributeName="opacity" values="1;1;0;0" keyTimes="0;0.1118;0.1147;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="64"><tspan class="dim">┌</tspan><tspan class="mg" dx="6">▌ create-glpi-plugin ▐</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1176;0.1324;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="84"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1176;0.1324;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="104"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">Plugin key (folder name)</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1529;0.1676;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="124"><tspan class="dim">│</tspan><tspan class="fg" dx="8">inventorynotes</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1941;0.2088;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="144"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.1941;0.2088;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="164"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">Display name</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.2412;0.2559;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="184"><tspan class="dim">│</tspan><tspan class="fg" dx="8">Inventory Notes</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.2824;0.2971;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="204"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.2824;0.2971;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="224"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">Which GLPI versions should it run on?</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.3294;0.3441;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="244"><tspan class="dim">│</tspan><tspan class="cy" dx="8">GLPI 11 and 12, one code base (recommended)</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.3706;0.3853;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="264"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.3706;0.3853;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="284"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">Which parts do you need?</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.4176;0.4324;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="304"><tspan class="dim">│</tspan><tspan class="cy" dx="8">Menu entry with an overview page, Item type, Automatic action</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.4588;0.4735;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="324"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.4588;0.4735;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="344"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">Which AI coding tools do you use?</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5059;0.5206;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="364"><tspan class="dim">│</tspan><tspan class="cy" dx="8">Claude Code, Cursor</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5471;0.5618;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="384"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.5471;0.5618;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="404"><tspan class="fg" dx="24">Writing inventorynotes…</tspan></text><circle cx="7" cy="399" r="6" fill="none" stroke="#c084fc" stroke-width="2.2" stroke-dasharray="22 16" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 7 399" to="360 7 399" dur="0.8s" repeatCount="indefinite"/></circle><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;0.5941;0.6088;0.6882;0.6892;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="404"><tspan class="gr">◇</tspan><tspan class="fg" dx="8">34 files written to ~/projects/inventorynotes</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.6882;0.7029;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="424"><tspan class="gr">◆</tspan><tspan class="fg" dx="8">Git repository initialised with a first commit.</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.7235;0.7382;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="444"><tspan class="dim">│</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.7235;0.7382;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+    <g opacity="0"><text y="464"><tspan class="dim">└</tspan><tspan class="ye" dx="8">Next: copy into glpi/plugins/, then</tspan><tspan class="bl" dx="6">glpi:plugin:install inventorynotes -u glpi</tspan></text><animate attributeName="opacity" values="0;0;1;1;0" keyTimes="0;0.7588;0.7735;0.965;1" dur="17.0s" repeatCount="indefinite"/></g>
+  </g>
+</svg>

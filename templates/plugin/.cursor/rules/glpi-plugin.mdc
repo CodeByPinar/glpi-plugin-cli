@@ -1,0 +1,23 @@
+---
+description: Rules for this GLPI plugin ({{name}}, key {{key}}, {{glpiLabel}})
+globs: ["**/*.php", "setup.php", "hook.php"]
+alwaysApply: true
+---
+
+Read `AGENTS.md` and `docs/glpi-rules.md` before changing PHP. The short version:
+
+- Classes live in `src/` as `GlpiPlugin\{{Key}}\Name`; tables are `glpi_plugin_{{key}}_*`; the right is `plugin_{{key}}`;
+  settings are in `glpi_configs` context `plugin:{{key}}`; static files only under `public/`.
+- Pages: `include('../../../inc/includes.php');`, `Ui::need(<right>)`, POST handling that ends in
+  `Html::redirect(Ui::url('page'))`, then `Ui::header()` … `Ui::footer()`. Form action is `Ui::url('page')`, never
+  `$_SERVER['PHP_SELF']`. Put `Ui::csrf()` in forms and never call `Session::checkCSRF()`.
+- `Html::redirect()` throws: do not catch `\Throwable` around it.
+- Overrides keep GLPI's exact signatures (`canView(): bool`, `getTabNameForItem(CommonGLPI $item, $withtemplate = 0)`,
+  `showForm($ID, array $options = [])`). Never declare `public static $rightname`; use `Profile::has()`.
+- `hook.php` is additive: guard with `tableExists()` / `fieldExists()`, add missing rights and settings only, gate
+  one-time migrations on `$previous`. Never rewrite existing rows on update.
+- SQL via `$DB->request([...])`, `insert()`, `update()`, `delete()`, `doQuery()`. Escape output with `Ui::e()`.
+  Strings through `__('…', '{{key}}')`.
+- Multi-select dropdowns: selected ids in `'value'`. Checkboxes: hidden `0` input first.
+- Ship: raise `PLUGIN_{{KEY}}_VERSION`, update `CHANGELOG.md`, run `bash tests/lint.sh <glpi root>`, render each
+  changed page once.

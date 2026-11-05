@@ -1,0 +1,53 @@
+# Release: push a tag "vX.Y.Z" (matching PLUGIN_{{KEY}}_VERSION in setup.php) → archives + GitHub release
+# with the CHANGELOG section of that version as notes.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Plugin archives and GitHub release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Check the version
+        id: v
+        run: |
+          VERSION=$(grep -oP "PLUGIN_{{KEY}}_VERSION',\s*'\K[^']+" setup.php)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          if [[ "$GITHUB_REF_TYPE" == "tag" && "$GITHUB_REF_NAME" != "v$VERSION" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match setup.php version $VERSION"; exit 1
+          fi
+
+      - name: Build the archives
+        run: python tools/package.py
+
+      - name: Release notes from CHANGELOG.md
+        run: python tools/package.py --notes > release-notes.md
+
+      - name: Publish the release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "{{name}} ${{ steps.v.outputs.version }}"
+          body_path: release-notes.md
+          files: |
+            dist/{{key}}-${{ steps.v.outputs.version }}.tgz
+            dist/{{key}}-${{ steps.v.outputs.version }}.zip
+            dist/{{key}}-${{ steps.v.outputs.version }}.sha256
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: {{key}}-${{ steps.v.outputs.version }}
+          path: dist/
