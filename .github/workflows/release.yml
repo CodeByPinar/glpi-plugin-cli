@@ -1,6 +1,7 @@
-# Release: push a tag "vX.Y.Z" matching package.json → GitHub release with the CHANGELOG section as notes,
-# and an npm publish when the NPM_TOKEN secret (an npm granular token with publish rights) is configured.
-# Without the secret, or when the version is already on npm, the npm step is skipped and the release still happens.
+# Release: push a tag "vX.Y.Z" matching package.json → GitHub release with the CHANGELOG section as notes, then
+# an npm publish. Publishing uses npm Trusted Publishing (OIDC: this repository + this workflow file are registered
+# as a trusted publisher of the package on npmjs.com, no token, no expiry). An NPM_TOKEN secret, when present, is
+# used instead. A version that is already on npm is not published again.
 name: Release
 
 on:
@@ -46,16 +47,24 @@ jobs:
           echo "published=$PUBLISHED" >> "$GITHUB_OUTPUT"
           echo "has_token=$HAS_TOKEN" >> "$GITHUB_OUTPUT"
           if [[ -n "$PUBLISHED" ]]; then echo "::notice::create-glpi-plugin@$PUBLISHED is already on npm, publish skipped"; fi
-          if [[ "$HAS_TOKEN" != "true" ]]; then echo "::warning::NPM_TOKEN secret not set, npm publish skipped (run npm publish --access public by hand)"; fi
-
-      - name: Publish to npm
-        if: steps.npm.outputs.published == '' && steps.npm.outputs.has_token == 'true'
-        run: npm publish --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: GitHub release
         uses: softprops/action-gh-release@v2
         with:
           name: create-glpi-plugin ${{ steps.v.outputs.version }}
           body_path: release-notes.md
+
+      # Trusted Publishing needs npm 11.5.1 or newer; Node 22 ships an older npm.
+      - name: Update npm
+        if: steps.npm.outputs.published == ''
+        run: npm install -g npm@latest && npm --version
+
+      - name: Publish to npm (trusted publishing)
+        if: steps.npm.outputs.published == '' && steps.npm.outputs.has_token != 'true'
+        run: npm publish --provenance --access public
+
+      - name: Publish to npm (token)
+        if: steps.npm.outputs.published == '' && steps.npm.outputs.has_token == 'true'
+        run: npm publish --provenance --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
