@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1] - 2026-11-05
+
+- npm showed the Turkish README on the package page (both `README*.md` files were picked up). The Turkish README
+  moved to `docs/README.tr.md`; the package now ships the English one.
+- Release workflow publishes to npm through trusted publishing (OIDC); the `NPM_TOKEN` secret is only a fallback.
+- Contributing guide, issue forms and a social preview image.
+
 ## [0.1.0] - 2026-11-05
 
 First release.

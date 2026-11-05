@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <b>English</b> · <a href="README.tr.md">Türkçe</a>
+  <b>English</b> · <a href="docs/README.tr.md">Türkçe</a>
 </p>
 
 <p align="center">

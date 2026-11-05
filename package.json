@@ -1,6 +1,6 @@
 {
   "name": "create-glpi-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Scaffold a GLPI 11 / 12 plugin in one command: menu, rights, settings page, item type, cron task, ticket tab, release workflow and AI coding rules.",
   "author": {
     "name": "Pınar Topuz",
