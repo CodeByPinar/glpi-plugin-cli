@@ -42,6 +42,6 @@ node bin/create-glpi-plugin.js demo --yes --dir /tmp/demo
 ## Release (maintainer)
 
 1. Bump `version` in `package.json`, turn `Unreleased` into `## [x.y.z] - date` in `CHANGELOG.md`.
-2. `git tag vx.y.z && git push --tags`. The release workflow runs the checks, publishes to npm when the
-   `NPM_TOKEN` secret exists (otherwise publish by hand with `npm publish --access public`), and creates the
-   GitHub release with the changelog section as notes.
+2. `git tag vx.y.z && git push --tags`. The release workflow runs the checks, creates the GitHub release with the
+   changelog section as notes, and publishes to npm through [trusted publishing](https://docs.npmjs.com/trusted-publishers)
+   (this repository and `release.yml` are registered on npmjs.com; no token). A version already on npm is skipped.
